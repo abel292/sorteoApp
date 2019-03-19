@@ -7,14 +7,11 @@ import android.support.annotation.NonNull;
 
 @Entity(tableName = "jugadores_seleccionados")
 public class JugadorSeleccionado {
-
-
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "nombre")
     String nombre;
 
-    @ColumnInfo
     String imagen = "";
 
 

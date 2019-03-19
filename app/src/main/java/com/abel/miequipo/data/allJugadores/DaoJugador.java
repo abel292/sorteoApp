@@ -20,13 +20,4 @@ public interface DaoJugador {
 
     @Query("DELETE FROM jugadores")
     void deleteAllUsers();
-
-   /* @Query("SELECT * FROM jugadores_seleccionados")
-    LiveData<List<JugadorSeleccionado>> getAllJugadorSeleccionados();
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertJugadorSeleccionado(JugadorSeleccionado jugador);
-
-    @Query("DELETE FROM jugadores_seleccionados")
-    void deleteAllUsersSeleccionados();*/
 }

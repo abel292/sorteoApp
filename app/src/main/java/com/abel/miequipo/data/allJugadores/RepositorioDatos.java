@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import com.abel.miequipo.data.DataBase;
+import com.abel.miequipo.data.MyDataBaseJugadores;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class RepositorioDatos {
     private LiveData<List<JugadorEntitie>> mAllJugadores;
 
     public RepositorioDatos(Application application) {
-        DataBase db = DataBase.getDatabase(application);
+        MyDataBaseJugadores db = MyDataBaseJugadores.getDatabase(application);
         mDaoJugador = db.daoJugador();
         mAllJugadores = mDaoJugador.getAllJugador();
     }

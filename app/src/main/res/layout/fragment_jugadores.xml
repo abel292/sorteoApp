@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,80 +9,95 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteNombre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="PEPITO"
-                android:inputType="textPersonName" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </LinearLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/buttonCrearJug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:src="@android:drawable/ic_menu_add" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/linearLayoutContenedorJugadores"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:hint="PEPITO"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/textView"
+                <ListView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="SELECCIONADOS"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:layout_height="250dp"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:nestedScrollingEnabled="true"
+                    android:clickable="true"/>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerViewSeleccionados"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp">
-
-                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
-        </ScrollView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/buttonCrearJug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@android:drawable/ic_menu_add" />
 
 
-    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayoutContenedorJugadores"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="SELECCIONADOS"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <ListView
+                        android:id="@+id/recyclerViewSeleccionados"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:divider="@null"
+                        android:dividerHeight="0dp"
+                        android:nestedScrollingEnabled="true"
+                        android:clickable="true">
+
+                    </ListView>
+
+                    <ImageButton
+                        android:id="@+id/imageButtonLimpiarLista"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+                </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

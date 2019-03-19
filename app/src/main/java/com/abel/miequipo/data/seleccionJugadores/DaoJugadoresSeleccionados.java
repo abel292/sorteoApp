@@ -15,7 +15,11 @@ public interface DaoJugadoresSeleccionados {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertJugador(JugadorSeleccionado jugador);
 
-    @Query("DELETE FROM jugadores_seleccionados")
+    @Query("DELETE FROM jugadores")
     void deleteAllUsers();
+
+    @Query("DELETE FROM jugadores_seleccionados WHERE nombre = :nombreJugador")
+    void deleteJugadorSeleccionado(String nombreJugador);
+
 }
 

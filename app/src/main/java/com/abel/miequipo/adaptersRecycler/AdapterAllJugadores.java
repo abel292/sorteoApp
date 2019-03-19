@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.abel.miequipo.R;
@@ -18,9 +19,10 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class AdapterAllJugadores extends RecyclerView.Adapter<AdapterAllJugadores.WordViewHolder>  {
+public class AdapterAllJugadores extends RecyclerView.Adapter<AdapterAllJugadores.WordViewHolder> {
     ViewModelJugadorSeleccionado viewModelJugadorSeleccionado;
     public String nombreJugador;
+    Context context;
     View.OnClickListener listener;
     public final LayoutInflater mInflater;
     public List<JugadorEntitie> mWords = Collections.emptyList(); // Cached copy of words
@@ -28,17 +30,19 @@ public class AdapterAllJugadores extends RecyclerView.Adapter<AdapterAllJugadore
 
     class WordViewHolder extends RecyclerView.ViewHolder {
         private TextView tvNombre;
+        private ImageButton imageButtonAddJugador;
 
         private WordViewHolder(View itemView) {
             super(itemView);
             tvNombre = itemView.findViewById(R.id.tvNombre);
+            imageButtonAddJugador = itemView.findViewById(R.id.imageButtonAddJugador);
         }
     }
 
-    
 
     public AdapterAllJugadores(Context context) {
         mInflater = LayoutInflater.from(context);
+        this.context= context;
 
     }
 
@@ -49,6 +53,7 @@ public class AdapterAllJugadores extends RecyclerView.Adapter<AdapterAllJugadore
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+
 //        itemView.setOnClickListener(this);
         return new WordViewHolder(itemView);
     }
@@ -58,12 +63,12 @@ public class AdapterAllJugadores extends RecyclerView.Adapter<AdapterAllJugadore
         final JugadorEntitie current = mWords.get(position);
         final String nombreJugadorClikeado = current.getNombre();
         holder.tvNombre.setText(current.getNombre());
-        /*holder.tvNombre.setOnClickListener(new View.OnClickListener() {
+        holder.imageButtonAddJugador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nombreJugador=nombreJugadorClikeado;
+                viewModelJugadorSeleccionado.insert(new JugadorSeleccionado(String.valueOf(holder.tvNombre.getText()), ""));
             }
-        });*/
+        });
     }
 
     public void setWords(List<JugadorEntitie> words) {

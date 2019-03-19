@@ -7,8 +7,6 @@ import android.support.annotation.NonNull;
 
 @Entity(tableName = "jugadores")
 public class JugadorEntitie {
-
-
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "nombre")

@@ -12,7 +12,6 @@ import java.util.List;
 public class ViewModelNuevoJugador extends AndroidViewModel {
 
         private RepositorioDatos mRepository;
-
         private LiveData<List<JugadorEntitie>> listaJugadores;
 
         public ViewModelNuevoJugador(Application application) {

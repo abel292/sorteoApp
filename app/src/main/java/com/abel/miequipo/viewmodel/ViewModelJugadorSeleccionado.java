@@ -26,12 +26,14 @@ public class ViewModelJugadorSeleccionado extends AndroidViewModel {
         return listaJugadores;
     }
 
-    public void insert(JugadorSeleccionado JugadorSeleccionado) {
-        mRepository.insert(JugadorSeleccionado);
-    }
+    public void insert(JugadorSeleccionado JugadorSeleccionado) { mRepository.insert(JugadorSeleccionado); }
 
     public void deleteAllJugadores() {
         mRepository.deleteAllJugadores();
+    }
+
+    public void deleteJugador(JugadorSeleccionado jugadorSeleccionado) {
+        mRepository.deleteJugador(jugadorSeleccionado);
     }
 
 
