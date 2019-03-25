@@ -21,80 +21,90 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:padding="5dp"
+                android:background="@color/design_default_color_primary"
+                android:orientation="vertical">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/white"
                     android:ems="10"
                     android:hint="PEPITO"
                     android:inputType="textPersonName" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp">
 
                 <ListView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
+                    android:clickable="true"
                     android:divider="@null"
                     android:dividerHeight="0dp"
-                    android:nestedScrollingEnabled="true"
-                    android:clickable="true"/>
+                    android:nestedScrollingEnabled="true" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/buttonCrearJug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:backgroundTint="@color/azul"
+                    android:src="@android:drawable/ic_menu_add" />
 
             </LinearLayout>
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/buttonCrearJug"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:src="@android:drawable/ic_menu_add" />
 
 
-                <LinearLayout
-                    android:id="@+id/linearLayoutContenedorJugadores"
+
+
+            <LinearLayout
+                android:id="@+id/linearLayoutContenedorJugadores"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical"
-                    android:padding="5dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="SELECCIONADOS"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="SELECCIONADOS"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                <ListView
+                    android:id="@+id/recyclerViewSeleccionados"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:clickable="true"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:nestedScrollingEnabled="true">
 
-                    <ListView
-                        android:id="@+id/recyclerViewSeleccionados"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:divider="@null"
-                        android:dividerHeight="0dp"
-                        android:nestedScrollingEnabled="true"
-                        android:clickable="true">
+                </ListView>
 
-                    </ListView>
+                <ImageButton
+                    android:id="@+id/imageButtonLimpiarLista"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
-                    <ImageButton
-                        android:id="@+id/imageButtonLimpiarLista"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+            </LinearLayout>
 
-                </LinearLayout>
+            <Button
+                android:id="@+id/buttonSiguiente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/design_default_color_primary"
+                android:text="SIEGUENTE"
+                android:textColor="@color/white" />
 
 
         </LinearLayout>

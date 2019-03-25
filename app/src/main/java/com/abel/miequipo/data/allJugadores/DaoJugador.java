@@ -20,4 +20,7 @@ public interface DaoJugador {
 
     @Query("DELETE FROM jugadores")
     void deleteAllUsers();
+
+    @Query("DELETE FROM jugadores WHERE nombre = :nombreJugador")
+    void deleteJugadorSeleccionado(String nombreJugador);
 }

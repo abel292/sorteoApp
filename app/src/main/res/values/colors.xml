@@ -3,5 +3,18 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
     <color name="white">#fff</color>
+
+    <color name="negro">#000000</color>
+    <color name="azul">#00009E</color>
+    <color name="amarillo">#DD9403</color>
+    <color name="rojo">#FA0000</color>
+    <color name="verde">#4CAF50</color>
+    <color name="gris_letras">#8a9597</color>
+    <color name="fondo_traslucido">#991D2527</color>
+    <color name="fondo_traslucido_claro">#999E9E9E</color>
+
+
+
 </resources>

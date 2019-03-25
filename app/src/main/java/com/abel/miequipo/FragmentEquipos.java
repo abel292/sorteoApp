@@ -66,7 +66,7 @@ public class FragmentEquipos extends Fragment {
             @Override
             public void onChanged(@Nullable final List<JugadorEntitie> words) {
                 // Update the cached copy of the words in the adapter.
-                configAutocomplete(autoCompleteNombre);
+                //configAutocomplete(autoCompleteNombre);
             }
         });
 
@@ -99,7 +99,7 @@ public class FragmentEquipos extends Fragment {
             }
         });
 
-        configAutocomplete(autoCompleteNombre);
+        //configAutocomplete(autoCompleteNombre);
 
         popupAgregarJugador= new Popup_agregar_jugador(this.getActivity());
     }
@@ -109,7 +109,9 @@ public class FragmentEquipos extends Fragment {
     }
 
     private void configAutocomplete(final AutoCompleteTextView autoCompleteTextView) {
-        viewModel.getAllJugadores().observe(getActivity(), new Observer<List<JugadorEntitie>>() {
+
+
+        /*viewModel.getAllJugadores().observe(getActivity(), new Observer<List<JugadorEntitie>>() {
             @Override
             public void onChanged(@Nullable final List<JugadorEntitie> jugadores) {
 
@@ -120,7 +122,7 @@ public class FragmentEquipos extends Fragment {
                 autoCompleteTextView.setAdapter(adapter);
 
             }
-        });
+        });*/
 
     }
 
