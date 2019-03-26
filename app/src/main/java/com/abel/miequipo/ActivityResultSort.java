@@ -35,26 +35,28 @@ public class ActivityResultSort extends AppCompatActivity {
         setContentView(R.layout.activity_result_sort);
         getSupportActionBar().hide();
 
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);  // Hostfragment
-        NavInflater inflater = navHostFragment.getNavController().getNavInflater();
-        NavGraph graph = inflater.inflate(R.navigation.nav_graph);
 
-       /*PARA MENU DE NAVEGACION (CREO)
-       NavigationView navigationView = findViewById(R.id.navigation);
-        NavigationUI.setupWithNavController(navigationView, navHostFragment.getNavController());
-*/
         if (getIntent().getExtras().containsKey(listaJugadores) && getIntent().getExtras().containsKey(limitJugadores)) {
             formarEquiposDe = getIntent().getExtras().getInt(limitJugadores);
             jugadores = getIntent().getExtras().getParcelableArrayList(listaJugadores);
+
             Bundle  bundle= new Bundle();
+            //bundle.putString("hola","banola");
             bundle.putInt(limitJugadores,formarEquiposDe);
             bundle.putParcelableArrayList(listaJugadores,jugadores);
+
+
+            NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);  // Hostfragment
+            NavInflater inflater = navHostFragment.getNavController().getNavInflater();
+            NavGraph graph = inflater.inflate(R.navigation.nav_graph);
             graph.setDefaultArguments(bundle);
             graph.setStartDestination(R.id.fragmentLoading);
 
             navHostFragment.getNavController().setGraph(graph);
             navHostFragment.getNavController().getGraph().setDefaultArguments(getIntent().getExtras());
+
         }
     }
 
 }
+

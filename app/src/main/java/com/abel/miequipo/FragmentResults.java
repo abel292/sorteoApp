@@ -50,10 +50,6 @@ public class FragmentResults extends Fragment {
         jugadores = getArguments().getParcelableArrayList(listaJugadores);
         limit= getArguments().getInt(limitJugadores);
 
-        for (JugadorSeleccionado jugador: jugadores){
-            Log.e("TAGFRAGMENTRESULT: ",jugador.toString());
-        }
-
         List<List<JugadorSeleccionado>> lista= formarEquipos(jugadores,limit);
         AdapterListEquipos adapter= new AdapterListEquipos(getContext(),lista,lvEquipos,limit);
         lvEquipos.setAdapter(adapter);

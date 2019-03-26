@@ -4,6 +4,7 @@ package com.abel.miequipo;
 import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class FragmentLoading extends Fragment {
 
     int current = 0;
     private static final String listaJugadores = "listaJugadoresMesclados";
-    private static final String limitJugadores = "limitJugadores";
+    private static final String limitJugadores = "limitJugadores" ;
     LottieAnimationView animacionLoading;
     ArrayList<JugadorSeleccionado> jugadores;
     int limit;
@@ -41,6 +42,17 @@ public class FragmentLoading extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_loading, container, false);
+
+        if (getArguments().containsKey(limitJugadores)){
+            limit= getArguments().getInt(limitJugadores);
+            jugadores = getArguments().getParcelableArrayList(listaJugadores);
+            Log.e("esnull",String.valueOf(jugadores.size()));
+        }else if(!getArguments().containsKey(listaJugadores)){
+            Toast.makeText(getContext(), "no existe key lista", Toast.LENGTH_SHORT).show();
+        }else if(!getArguments().containsKey(limitJugadores)){
+            Toast.makeText(getContext(), "no existe key limit", Toast.LENGTH_SHORT).show();
+        }
+
         animacionLoading = v.findViewById(R.id.animacionLoading);
         animacionLoading.playAnimation();
         animacionLoading.addAnimatorListener(new Animator.AnimatorListener() {
@@ -64,9 +76,7 @@ public class FragmentLoading extends Fragment {
                 if (current > 3) {
 
                     //Toast.makeText(getContext(), "Aca termina la animacion", Toast.LENGTH_SHORT).show();
-                    limit= getArguments().getInt(limitJugadores);
-                    jugadores = getArguments().getParcelableArrayList(listaJugadores);
-
+                    Log.e("esnull",String.valueOf(jugadores.size()));
                     Bundle  bundle= new Bundle();
                     bundle.putParcelableArrayList(listaJugadores,jugadores);
                     bundle.putInt(limitJugadores,limit);

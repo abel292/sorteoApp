@@ -13,12 +13,11 @@
         <action
             android:id="@+id/action_fragmentLoading_to_fragmentResults"
             app:destination="@id/fragmentResults" />
+
     </fragment>
     <fragment
         android:id="@+id/fragmentResults"
         android:name="com.abel.miequipo.FragmentResults"
         android:label="fragment_results"
-        tools:layout="@layout/fragment_results" >
-
-    </fragment>
+        tools:layout="@layout/fragment_results" />
 </navigation>
