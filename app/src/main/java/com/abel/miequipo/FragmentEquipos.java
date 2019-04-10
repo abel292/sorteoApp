@@ -101,7 +101,7 @@ public class FragmentEquipos extends Fragment {
 
         //configAutocomplete(autoCompleteNombre);
 
-        popupAgregarJugador= new Popup_agregar_jugador(this.getActivity());
+        popupAgregarJugador= new Popup_agregar_jugador(this.getActivity(),getContext());
     }
 
     private void abrirPopupCrearJugador(){

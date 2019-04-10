@@ -25,6 +25,13 @@
                 android:background="@color/celeste"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/jugador"
+                    />
+
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteNombre"
                     android:layout_width="match_parent"
@@ -44,6 +51,13 @@
                     android:divider="@null"
                     android:dividerHeight="0dp"
                     android:nestedScrollingEnabled="true" />
+                <ImageButton
+                    android:id="@+id/imageButtonLimpiarLista1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/buttonCrearJug"
@@ -103,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/design_default_color_primary"
-                android:text="SIEGUENTE"
+                android:text="SIGUIENTE"
                 android:textColor="@color/white" />
 
 

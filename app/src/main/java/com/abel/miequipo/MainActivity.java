@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         final FragmentManager mFragmentManager = getSupportFragmentManager();
 
@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentFavoritos = new FragmentFavoritos();
         fragmentJugadores = new FragmentJugadores();
 
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        /*navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -75,7 +76,12 @@ public class MainActivity extends AppCompatActivity {
                 transaction1.replace(R.id.mainContainer, mCurrentFragment);
                 transaction1.commitAllowingStateLoss();
                 return true;
-            }});
+            }});*/
+
+        final FragmentTransaction transaction1 = mFragmentManager.beginTransaction();
+        //transaction1.replace(R.id.mainContainer, mCurrentFragment);
+        transaction1.replace(R.id.mainContainer, fragmentJugadores);
+        transaction1.commitAllowingStateLoss();
     }
 
 }

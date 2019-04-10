@@ -10,11 +10,15 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.abel.miequipo.R;
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AdapterGridCancha extends BaseAdapter {
@@ -43,6 +47,19 @@ public class AdapterGridCancha extends BaseAdapter {
         convertView = inflater.inflate(R.layout.recyclerview_item, parent, false);
         JugadorSeleccionado currentJugador = listaJugadores.get(position);
         final TextView tvNameJugador = convertView.findViewById(R.id.tvNombre);
+        CircleImageView foto = convertView.findViewById(R.id.imagenJugador);
+
+
+        Glide.with(mContext)
+                .load("https://www.elpopular.pe/sites/default/files/styles/img_620x465/public/imagen/2017/08/05/Noticia-186692-dragon-ball-super.jpg?itok=_SIzu3i-")
+                .centerCrop()
+                .into(foto);
+
+        Glide.with(mContext)
+                .load(currentJugador.getImagen())
+                .override(50, 50) // resizes the image to 100x200 pixels but does not respect aspect ratio
+                .into(foto);
+
         tvNameJugador.setText(currentJugador.getNombre());
         return convertView;
 

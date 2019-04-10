@@ -5,14 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.abel.miequipo.R;
 import com.abel.miequipo.data.allJugadores.JugadorEntitie;
+import com.abel.miequipo.objetos.Imagen;
 import com.abel.miequipo.viewmodel.ViewModelJugadorSeleccionado;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterListAllPlayers extends BaseAdapter {
 
@@ -21,6 +27,7 @@ public class AdapterListAllPlayers extends BaseAdapter {
     private Context mContext;
     private ListView lvAgregarJugadores;
     private LayoutInflater inflater = null;
+    public CircleImageView image ;
     ViewModelJugadorSeleccionado viewModelJugadorSeleccionado;
 
 
@@ -53,8 +60,21 @@ public class AdapterListAllPlayers extends BaseAdapter {
         convertView = inflater.inflate(R.layout.recyclerview_item, parent, false);
         JugadorEntitie currentJugador = jugadores.get(position);
         final TextView newFriendShipName = convertView.findViewById(R.id.tvNombre);
-        final View finalConvertView = convertView;
+        image = convertView.findViewById(R.id.imagenJugador);
 
+        if (currentJugador.getImagen().isEmpty()
+                || currentJugador.getImagen().equalsIgnoreCase("")
+                || currentJugador.getImagen()==null
+                || currentJugador.getImagen().length()==0){
+            image.setImageResource(R.drawable.jugador);
+        }else {
+            //Imagen.setPic(image,currentJugador.getImagen(),2);
+            Glide.with(mContext)
+                    .load(currentJugador.getImagen())
+                    .override(50, 50) // resizes the image to 100x200 pixels but does not respect aspect ratio
+                    .into(image);
+            Toast.makeText(mContext,"entre con glide", Toast.LENGTH_SHORT).show();
+        }
         if (!currentJugador.getNombre().isEmpty()) {
             newFriendShipName.setText(currentJugador.getNombre());
         } else {
@@ -64,4 +84,6 @@ public class AdapterListAllPlayers extends BaseAdapter {
 
         return convertView;
     }
+
+
 }

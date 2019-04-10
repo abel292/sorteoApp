@@ -12,8 +12,11 @@ import android.widget.Toast;
 import com.abel.miequipo.R;
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
 import com.abel.miequipo.viewmodel.ViewModelJugadorSeleccionado;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AdapterListJugadores extends BaseAdapter {
@@ -56,6 +59,13 @@ public class AdapterListJugadores extends BaseAdapter {
         convertView = inflater.inflate(R.layout.item_list_jugadores, parent, false);
         TextView textViewNombreJugador = convertView.findViewById(R.id.textViewNombreJugador);
         textViewNombreJugador.setText(String.valueOf(jugadores.get(position).getNombre()));
+
+        CircleImageView imagenJugador = convertView.findViewById(R.id.imagenJugador);
+        Glide.with(mContext)
+                .load(jugadores.get(position).getImagen())
+                .override(50, 50) // resizes the image to 100x200 pixels but does not respect aspect ratio
+                .into(imagenJugador);
+
         return convertView;
     }
 }

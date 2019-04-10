@@ -45,8 +45,6 @@ public class ActivitySorteo extends AppCompatActivity {
 
         listView= findViewById(R.id.gridView);
 
-
-
         viewModelJugadorSeleccionado = ViewModelProviders.of(this).get(ViewModelJugadorSeleccionado.class);
         viewModelJugadorSeleccionado.getAllJugadores().observe(ActivitySorteo.this, new Observer<List<JugadorSeleccionado>>() {
             @Override
