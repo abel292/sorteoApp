@@ -64,8 +64,9 @@ public class AdapterListAllPlayers extends BaseAdapter {
 
         if (currentJugador.getImagen().isEmpty()
                 || currentJugador.getImagen().equalsIgnoreCase("")
-                || currentJugador.getImagen()==null
-                || currentJugador.getImagen().length()==0){
+                || currentJugador.getImagen() == null
+                || currentJugador.getImagen().length() < 1
+                || currentJugador.getImagen().equalsIgnoreCase("sin foto")){
             image.setImageResource(R.drawable.jugador);
         }else {
             //Imagen.setPic(image,currentJugador.getImagen(),2);
@@ -73,7 +74,7 @@ public class AdapterListAllPlayers extends BaseAdapter {
                     .load(currentJugador.getImagen())
                     .override(50, 50) // resizes the image to 100x200 pixels but does not respect aspect ratio
                     .into(image);
-            Toast.makeText(mContext,"entre con glide", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext,"entre con glide", Toast.LENGTH_SHORT).show();
         }
         if (!currentJugador.getNombre().isEmpty()) {
             newFriendShipName.setText(currentJugador.getNombre());

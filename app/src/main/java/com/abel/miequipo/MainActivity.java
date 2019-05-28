@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_equipos:
                     return true;
-                case R.id.navigation_favoritos:
-                    return true;
+              /*  case R.id.navigation_favoritos:
+                    return true;*/
                 case R.id.navigation_jugadores:
                     return true;
             }
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private Fragment mCurrentFragment;
-    private FragmentEquipos fragmentEquipos;
+    private FragmentRankin fragmentRankin;
     private FragmentFavoritos fragmentFavoritos;
     private FragmentJugadores fragmentJugadores;
 
@@ -43,28 +42,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
-        //BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         final FragmentManager mFragmentManager = getSupportFragmentManager();
 
 
-        fragmentEquipos = new FragmentEquipos();
+        fragmentRankin = new FragmentRankin();
         fragmentFavoritos = new FragmentFavoritos();
         fragmentJugadores = new FragmentJugadores();
 
 
-        /*navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
                     case R.id.navigation_equipos:
-                        mCurrentFragment = fragmentEquipos;
+                        mCurrentFragment = fragmentRankin;
                         break;
-                    case R.id.navigation_favoritos:
+                    /*case R.id.navigation_favoritos:
                         mCurrentFragment = fragmentFavoritos;
-                        break;
+                        break;*/
                     case R.id.navigation_jugadores:
                         mCurrentFragment = fragmentJugadores;
                         break;
@@ -76,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 transaction1.replace(R.id.mainContainer, mCurrentFragment);
                 transaction1.commitAllowingStateLoss();
                 return true;
-            }});*/
+            }
+        });
 
         final FragmentTransaction transaction1 = mFragmentManager.beginTransaction();
         //transaction1.replace(R.id.mainContainer, mCurrentFragment);

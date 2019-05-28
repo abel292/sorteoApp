@@ -37,10 +37,12 @@ import android.widget.Toast;
 import com.abel.miequipo.adaptersRecycler.AdapterListAllPlayers;
 import com.abel.miequipo.adaptersRecycler.AdapterPlayersSelected;
 import com.abel.miequipo.data.allJugadores.JugadorEntitie;
+import com.abel.miequipo.data.rankinJugadores.JugadorRankin;
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
 import com.abel.miequipo.popups.Popup_agregar_jugador;
 import com.abel.miequipo.viewmodel.ViewModelJugadorSeleccionado;
 import com.abel.miequipo.viewmodel.ViewModelNuevoJugador;
+import com.abel.miequipo.viewmodel.ViewModelRankinJugadores;
 
 import java.io.File;
 import java.io.IOException;
@@ -90,6 +92,7 @@ public class FragmentJugadores extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_jugadores, container, false);
+
 
         recyclerView = v.findViewById(R.id.recyclerView);
         recyclerViewSeleccionados = v.findViewById(R.id.recyclerViewSeleccionados);

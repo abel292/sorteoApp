@@ -6,14 +6,17 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import com.abel.miequipo.data.allJugadores.JugadorEntitie;
 import com.abel.miequipo.data.allJugadores.DaoJugador;
+import com.abel.miequipo.data.rankinJugadores.DaoJugadorRankin;
+import com.abel.miequipo.data.rankinJugadores.JugadorRankin;
 import com.abel.miequipo.data.seleccionJugadores.DaoJugadoresSeleccionados;
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
 
-@Database(entities = {JugadorEntitie.class, JugadorSeleccionado.class}, version = 5)
+@Database(entities = {JugadorEntitie.class, JugadorSeleccionado.class , JugadorRankin.class}, version = 10)
 public abstract class MyDataBaseJugadores extends RoomDatabase  {
 
     public abstract DaoJugador daoJugador();
     public abstract DaoJugadoresSeleccionados daoJugadoresSeleccionados();
+    public abstract DaoJugadorRankin daoJugadorRankin();
     private static volatile MyDataBaseJugadores INSTANCE;
     private static String DATABASE_NAME= "jugadores_database";
 

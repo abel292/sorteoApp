@@ -3,17 +3,18 @@
 
     <item
         android:id="@+id/navigation_equipos"
-        android:icon="@drawable/equipo"
-        android:title="@string/title_equipos"/>
+        android:icon="@drawable/jugador"
+        android:title="@string/title_jugadores"/>
 
-    <item
+  <!--  <item
         android:id="@+id/navigation_favoritos"
         android:icon="@drawable/estrella"
-        android:title="@string/title_favoritos" />
+        android:title="@string/title_favoritos" />-->
 
     <item
         android:id="@+id/navigation_jugadores"
-        android:icon="@drawable/jugador"
-        android:title="@string/title_jugadores"/>
+        android:title="@string/jugar"
+        android:icon="@drawable/football"
+        />
 
 </menu>

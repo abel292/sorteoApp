@@ -18,6 +18,7 @@
             android:layout_height="match_parent"
             android:background="@color/fondo_traslucido"
             android:orientation="vertical"
+            android:gravity="center_horizontal"
             android:visibility="visible">
 
 
@@ -36,7 +37,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/buttonFinalizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/negro"
+                android:textColor="@color/white"
+                android:text="FINALIZAR"/>
+
 
         </LinearLayout>
 
@@ -78,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
+
 
     </LinearLayout>
 

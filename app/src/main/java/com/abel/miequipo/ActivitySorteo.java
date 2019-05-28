@@ -27,11 +27,14 @@ import java.util.List;
 
 public class ActivitySorteo extends AppCompatActivity {
 
+    private static final String limitCampeonato = "limitCampeonato";
     private static final String limitJugadores = "limitJugadores";
     private static final String listaJugadores = "listaJugadoresMesclados";
-    private Button buttonSortear, buttonMenos, buttonMas;
-    private EditText editTextCuentaEquipos;
+    private Button buttonSortear, buttonMenos, buttonMas,  buttonMenos1, buttonMas1;
+    private EditText editTextCuentaEquipos, editTextCuentaEquipos1;
     int currentValue = 0;
+    int currentValue1 = 0;
+
     private LiveData<List<JugadorSeleccionado>> jugadoresSeleccionados;
     ViewModelJugadorSeleccionado viewModelJugadorSeleccionado;
     private AdapterGridCancha adapter;
@@ -57,15 +60,18 @@ public class ActivitySorteo extends AppCompatActivity {
         jugadoresSeleccionados = viewModelJugadorSeleccionado.getAllJugadores();
         configView();
 
-
-
     }
 
     private void configView() {
         buttonMas = findViewById(R.id.buttonMas);
         buttonMenos = findViewById(R.id.buttonMenos);
+
+        buttonMas1 = findViewById(R.id.buttonMas1);
+        buttonMenos1 = findViewById(R.id.buttonMenos1);
+
         buttonSortear = findViewById(R.id.buttonSortear);
         editTextCuentaEquipos = findViewById(R.id.editTextCuentaEquipos);
+        editTextCuentaEquipos1 = findViewById(R.id.editTextCuentaEquipos1);
 
         buttonMas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,12 +89,29 @@ public class ActivitySorteo extends AppCompatActivity {
             }
         });
 
+        buttonMas1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentValue1 = Integer.parseInt(editTextCuentaEquipos1.getText().toString()) + 1;
+                editTextCuentaEquipos1.setText(String.valueOf(currentValue1));
+            }
+        });
+
+        buttonMenos1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentValue1 = Integer.parseInt(editTextCuentaEquipos1.getText().toString()) - 1;
+                editTextCuentaEquipos1.setText(String.valueOf(currentValue1));
+            }
+        });
+
         buttonSortear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int limit = Integer.parseInt(String.valueOf(editTextCuentaEquipos.getText()));
+                int limitCampeonato = Integer.parseInt(String.valueOf(editTextCuentaEquipos1.getText()));
                 List<JugadorSeleccionado> jugadoresMesclados = sortearEquipos(jugadoresSeleccionados);
-                irAnimacionSorteo(jugadoresMesclados, limit);
+                irAnimacionSorteo(jugadoresMesclados, limit,limitCampeonato);
             }
         });
     }
@@ -120,13 +143,14 @@ public class ActivitySorteo extends AppCompatActivity {
     }
 
 
-    private void irAnimacionSorteo(List<JugadorSeleccionado> jugadoresMesclados, int limit) {
+    private void irAnimacionSorteo(List<JugadorSeleccionado> jugadoresMesclados, int limit, int limitCampeonatos) {
         ArrayList<JugadorSeleccionado> listaCasteada = new ArrayList<>();
         for (JugadorSeleccionado jugador : jugadoresMesclados) {
             listaCasteada.add(jugador);
         }
         Intent intent = new Intent(this, ActivityResultSort.class);
         intent.putExtra(limitJugadores, limit);
+        intent.putExtra(limitCampeonato, limitCampeonatos);
         intent.putExtra(listaJugadores, listaCasteada);
         startActivity(intent);
     }

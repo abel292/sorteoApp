@@ -62,10 +62,12 @@ public class AdapterPlayersSelected extends BaseAdapter {
 
         if (currentJugador.getImagen().isEmpty()
                 || currentJugador.getImagen().equalsIgnoreCase("")
-                || currentJugador.getImagen()==null
-                || currentJugador.getImagen().length()==0){
+                || currentJugador.getImagen() == null
+                || currentJugador.getImagen().length() < 1
+                || currentJugador.getImagen().equalsIgnoreCase("sin foto")) {
+
             image.setImageResource(R.drawable.jugador);
-        }else {
+        } else {
             //Imagen.setPic(image,currentJugador.getImagen(),2);
             //Imagen.setPic(image,currentJugador.getImagen(),2);
             Glide.with(mContext)

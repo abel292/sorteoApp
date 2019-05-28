@@ -1,6 +1,7 @@
 package com.abel.miequipo;
 
 import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,8 +23,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.abel.miequipo.data.allJugadores.JugadorEntitie;
+import com.abel.miequipo.data.rankinJugadores.JugadorRankin;
 import com.abel.miequipo.objetos.Imagen;
+import com.abel.miequipo.viewmodel.ViewModelJugadorSeleccionado;
 import com.abel.miequipo.viewmodel.ViewModelNuevoJugador;
+import com.abel.miequipo.viewmodel.ViewModelRankinJugadores;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +42,9 @@ public class ActivityAddPlayers extends AppCompatActivity {
     private List<EditText> listaEditText = new ArrayList<>();
     private EditText editTextNombre;
     private JugadorEntitie jugadorEntitie;
+
     private ViewModelNuevoJugador viewModel;
+    private ViewModelRankinJugadores viewModelRankin;
     private CircleImageView imageViewPerfil;
     private int current = 0;
     private String mCurrentPhotoPath;
@@ -56,8 +62,12 @@ public class ActivityAddPlayers extends AppCompatActivity {
         getSupportActionBar().hide();
 
         buttonSave = findViewById(R.id.buttonSave);
-        imageViewPerfil= findViewById(R.id.imageViewPerfil);
-        editTextNombre= findViewById(R.id.editTextNombre);
+        imageViewPerfil = findViewById(R.id.imageViewPerfil);
+        editTextNombre = findViewById(R.id.editTextNombre);
+
+
+        viewModel = new ViewModelNuevoJugador(getApplication());
+        viewModelRankin = new ViewModelRankinJugadores(getApplication());
 
         imageViewPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +79,14 @@ public class ActivityAddPlayers extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                viewModel = new ViewModelNuevoJugador(getApplication());
                 JugadorEntitie jugador = new JugadorEntitie(editTextNombre.getText().toString(), foto);
                 viewModel.insert(jugador);
-                Toast.makeText(getBaseContext(), "Guardado: "+foto, Toast.LENGTH_LONG).show();
+
+                JugadorRankin jugadorRankin = new JugadorRankin(editTextNombre.getText().toString(), foto, "0", "0", "0");
+                viewModelRankin.insert(jugadorRankin);
+
+
+                Toast.makeText(getBaseContext(), "Guardado: " + foto, Toast.LENGTH_LONG).show();
                 restartCreateNewJugador();
             }
         });
@@ -93,14 +107,15 @@ public class ActivityAddPlayers extends AppCompatActivity {
             // Error occurred while creating the File
         }
 
-        foto= mCurrentPhotoPath;
+        foto = mCurrentPhotoPath;
         return mCurrentPhotoPath;
     }
 
-    private void restartCreateNewJugador(){
+    private void restartCreateNewJugador() {
         editTextNombre.setText("");
         imageViewPerfil.setImageResource(R.drawable.jugador);
     }
+
     public File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = null;

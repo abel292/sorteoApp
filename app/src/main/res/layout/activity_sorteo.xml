@@ -22,7 +22,7 @@
                 android:id="@+id/textViewSubTitulo4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="Formar equipos de:"
                 android:textAlignment="viewStart"
                 android:textColor="@color/gris_letras" />
@@ -54,6 +54,49 @@
 
                 <Button
                     android:id="@+id/buttonMas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="20dp"
+                android:text="Un equipo gana el torneo ganando cuantos partidos:"
+                android:textAlignment="viewStart"
+                android:textColor="@color/gris_letras" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonMenos1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="-"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editTextCuentaEquipos1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="3"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/buttonMas1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

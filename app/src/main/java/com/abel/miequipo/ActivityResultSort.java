@@ -8,6 +8,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
 
@@ -25,10 +26,12 @@ public class ActivityResultSort extends AppCompatActivity {
 
     private static final String TAG = ActivityResultSort.class.getSimpleName();
     private static final String listaJugadores = "listaJugadoresMesclados";
-    private static final String limitJugadores = "limitJugadores" ;
+    private static final String limitJugadores = "limitJugadores";
 
     ArrayList<JugadorSeleccionado> jugadores;
     private int formarEquiposDe;
+    private int limitCampeonato;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +41,15 @@ public class ActivityResultSort extends AppCompatActivity {
 
         if (getIntent().getExtras().containsKey(listaJugadores) && getIntent().getExtras().containsKey(limitJugadores)) {
             formarEquiposDe = getIntent().getExtras().getInt(limitJugadores);
+            limitCampeonato = getIntent().getExtras().getInt("limitCampeonato");
+            Toast.makeText(this, "limit campeonato "+String.valueOf(limitCampeonato), Toast.LENGTH_SHORT).show();
             jugadores = getIntent().getExtras().getParcelableArrayList(listaJugadores);
 
             Bundle  bundle= new Bundle();
             //bundle.putString("hola","banola");
             bundle.putInt(limitJugadores,formarEquiposDe);
+            bundle.putInt("limitCampeonato",limitCampeonato);
+            Toast.makeText(this, "limit campeonato activity result"+String.valueOf(limitCampeonato), Toast.LENGTH_SHORT).show();
             bundle.putParcelableArrayList(listaJugadores,jugadores);
 
 

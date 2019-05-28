@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentRankin">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Top de campeonatos ganados"
+                android:textAlignment="center"
+                android:textSize="25dp" />
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/item_podeo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </include>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/grafica"
+                android:layout_width="470dp"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

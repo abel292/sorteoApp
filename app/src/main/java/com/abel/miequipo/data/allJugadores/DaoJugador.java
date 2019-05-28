@@ -6,6 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
+import com.abel.miequipo.data.rankinJugadores.JugadorRankin;
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
 
 import java.util.List;
