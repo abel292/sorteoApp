@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class FragmentRankin extends BaseFragment {
     RecyclerView recyclerView;
     LineChart grafica;
 
+    LinearLayout linearLayoutPartidos,linearLayoutPartidos2,linearLayoutPartidos3;
     ImageView imageView, imageView2, imageView3;
     TextView textViewTitulo;
     TextView textViewNombreJugador, textViewNombreJugador2, textViewNombreJugador3;
@@ -74,6 +76,10 @@ public class FragmentRankin extends BaseFragment {
         recyclerView = v.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
+
+        linearLayoutPartidos.setVisibility(View.GONE);
+        linearLayoutPartidos2.setVisibility(View.GONE);
+        linearLayoutPartidos3.setVisibility(View.GONE);
 
         viewModelRankinJugadores = ViewModelProviders.of(this.getActivity()).get(ViewModelRankinJugadores.class);
 
@@ -125,7 +131,7 @@ public class FragmentRankin extends BaseFragment {
                     textViewPartidos3.setText(String.valueOf(jugadorTres.getPartidosGanados()));
                     // Toast.makeText(getContext(),"RANKIN: "+ jugadores.get(0).getNombre(), Toast.LENGTH_SHORT).show();
 
-                    final AdapterRankinJugadores adapter = new AdapterRankinJugadores(getContext(), jugadores);
+                    final AdapterRankinJugadores adapter = new AdapterRankinJugadores(getContext(), jugadores,"campeonatos");
                     recyclerView.setAdapter(adapter);
 
                 } else if (jugadores.size() == 0) {
@@ -186,6 +192,10 @@ public class FragmentRankin extends BaseFragment {
     }
 
     private void binding(View v) {
+
+        linearLayoutPartidos= v.findViewById(R.id.linearLayoutPartidos);
+        linearLayoutPartidos2= v.findViewById(R.id.linearLayoutPartidos2);
+        linearLayoutPartidos3= v.findViewById(R.id.linearLayoutPartidos3);
 
         textViewTitulo = v.findViewById(R.id.textViewTituloFragment);
         //Top 1

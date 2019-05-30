@@ -6,6 +6,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,7 +129,8 @@ public class AdapterListEquipos extends BaseAdapter {
                             if (equipos[count]!=null){
                                 viewModelRankinJugadores.addPartido(String.valueOf(equipos[count]), jugador, mAllJugadoresLocal);
                             }else {
-                                Toast.makeText(mContext, "equipo null", Toast.LENGTH_SHORT).show();
+
+                                Log.e("equipo","NULL");
                             }
                         }
                         count ++;
@@ -139,7 +141,6 @@ public class AdapterListEquipos extends BaseAdapter {
 
             }
         });
-
         for (List<JugadorSeleccionado> list : jugadores) {
             AdapterListJugadores adapter = new AdapterListJugadores(mContext, jugadores.get(position), lvJugadores);
             lvJugadores.setAdapter(adapter);

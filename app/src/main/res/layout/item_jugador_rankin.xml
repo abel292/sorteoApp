@@ -63,6 +63,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linearLayoutPartidos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -79,10 +80,13 @@
                 android:id="@+id/textViewPartidosGanados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
+
                 android:text="Partidos" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayoutCampeonatos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -99,6 +103,7 @@
                 android:id="@+id/textViewCampeonatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="campeon" />
         </LinearLayout>
 

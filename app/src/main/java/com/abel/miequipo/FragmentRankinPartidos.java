@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class FragmentRankinPartidos extends BaseFragment {
     RecyclerView recyclerView;
     LineChart grafica;
 
+    LinearLayout linearLayoutCampeonatos,linearLayoutCampeonatos2,linearLayoutCampeonatos3;
     ImageView imageView, imageView2, imageView3;
     TextView textViewNombreJugador, textViewNombreJugador2, textViewNombreJugador3;
     TextView textViewPartidos, textViewPartidos2, textViewPartidos3;
@@ -70,6 +72,10 @@ public class FragmentRankinPartidos extends BaseFragment {
         recyclerView = v.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
+
+        linearLayoutCampeonatos.setVisibility(View.GONE);
+        linearLayoutCampeonatos2.setVisibility(View.GONE);
+        linearLayoutCampeonatos3.setVisibility(View.GONE);
 
         viewModelRankinJugadores = ViewModelProviders.of(this.getActivity()).get(ViewModelRankinJugadores.class);
 
@@ -121,7 +127,7 @@ public class FragmentRankinPartidos extends BaseFragment {
                     textViewPartidos3.setText(String.valueOf(jugadorTres.getPartidosGanados()));
                     // Toast.makeText(getContext(),"RANKIN: "+ jugadores.get(0).getNombre(), Toast.LENGTH_SHORT).show();
 
-                    final AdapterRankinJugadores adapter = new AdapterRankinJugadores(getContext(), jugadores);
+                    final AdapterRankinJugadores adapter = new AdapterRankinJugadores(getContext(), jugadores,"partidos");
                     recyclerView.setAdapter(adapter);
                 } else if (jugadores.size() == 0) {
                     Toast.makeText(getContext(), "Debes agregar jugadores", Toast.LENGTH_LONG).show();
@@ -140,6 +146,10 @@ public class FragmentRankinPartidos extends BaseFragment {
     }
 
     private void binding(View v) {
+
+        linearLayoutCampeonatos= v.findViewById(R.id.linearLayoutCampeonatos);
+        linearLayoutCampeonatos2= v.findViewById(R.id.linearLayoutCampeonatos2);
+        linearLayoutCampeonatos3= v.findViewById(R.id.linearLayoutCampeonatos3);
 
         textViewTitulo = v.findViewById(R.id.textViewTituloFragment);
         textViewTitulo.setText("TOP PARTIDOS");

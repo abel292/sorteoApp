@@ -83,6 +83,7 @@
 
 
             <LinearLayout
+                android:id="@+id/linearLayoutPartidos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -99,10 +100,12 @@
                     android:id="@+id/textViewPartidos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="20dp"
                     android:text="Partidos" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayoutCampeonatos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -119,6 +122,7 @@
                     android:id="@+id/textViewCampeonatos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="20dp"
                     android:text="campeon" />
             </LinearLayout>
 
@@ -209,6 +213,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutPartidos2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -219,16 +224,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed-light"
-                        android:text="Partidos:" />
+                        android:text="Partidos:"
+                        />
 
                     <TextView
                         android:id="@+id/textViewPartidos2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Partidos" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutCampeonatos2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -246,6 +254,7 @@
                         android:id="@+id/textViewCampeonatos2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="campeon" />
                 </LinearLayout>
 
@@ -332,6 +341,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutPartidos3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -348,10 +358,12 @@
                         android:id="@+id/textViewPartidos3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Partidos" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutCampeonatos3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -368,6 +380,7 @@
                         android:id="@+id/textViewCampeonatos3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="campeon" />
                 </LinearLayout>
 

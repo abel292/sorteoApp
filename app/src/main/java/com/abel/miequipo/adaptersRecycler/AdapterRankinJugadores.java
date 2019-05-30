@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import java.util.List;
 public class AdapterRankinJugadores extends RecyclerView.Adapter<AdapterRankinJugadores.WordViewHolder> {
     public String nombreJugador;
     Context context;
+    String fragment;
     View.OnClickListener listener;
     public LayoutInflater mInflater;
     public List<JugadorRankin> listaJugadores = Collections.emptyList(); // Cached copy of words
@@ -31,9 +33,12 @@ public class AdapterRankinJugadores extends RecyclerView.Adapter<AdapterRankinJu
     class WordViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNombreJugador, textViewGoles, textViewPartidos, textViewCampeonatos;
         private ImageView imagenJugador;
+        private LinearLayout linearLayoutCampeonatos,linearLayoutPartidos;
 
         private WordViewHolder(View itemView) {
             super(itemView);
+            linearLayoutCampeonatos= itemView.findViewById(R.id.linearLayoutCampeonatos);
+            linearLayoutPartidos= itemView.findViewById(R.id.linearLayoutPartidos);
             textViewNombreJugador = itemView.findViewById(R.id.textViewNombreJugador);
             textViewGoles = itemView.findViewById(R.id.textViewGoles);
             textViewPartidos = itemView.findViewById(R.id.textViewPartidosGanados);
@@ -44,11 +49,12 @@ public class AdapterRankinJugadores extends RecyclerView.Adapter<AdapterRankinJu
     }
 
 
-    public AdapterRankinJugadores(@NonNull Context context, List<JugadorRankin> listaJugadores) {
+    public AdapterRankinJugadores(@NonNull Context context, List<JugadorRankin> listaJugadores,String fragment) {
         if (context != null) {
             mInflater = LayoutInflater.from(context);
             this.context = context;
             this.listaJugadores = listaJugadores;
+            this.fragment= fragment;
         }
 
 
@@ -70,12 +76,22 @@ public class AdapterRankinJugadores extends RecyclerView.Adapter<AdapterRankinJu
     public void onBindViewHolder(final WordViewHolder holder, final int position) {
         final JugadorRankin current = listaJugadores.get(position);
 
+        if (position <= 2) {
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+            Log.d("convertView", "invisible");
+        }
 
         holder.textViewNombreJugador.setText(current.getNombre());
         holder.textViewGoles.setText(String.valueOf(current.getGoles()));
         holder.textViewPartidos.setText(String.valueOf(current.getPartidosGanados()));
         holder.textViewCampeonatos.setText(String.valueOf(current.getCampeonatosGanados()));
 
+        if (fragment.equalsIgnoreCase("partidos")){
+            holder.linearLayoutCampeonatos.setVisibility(View.GONE);
+        }else if (fragment.equalsIgnoreCase("campeonatos")){
+            holder.linearLayoutPartidos.setVisibility(View.GONE);
+        }
 
         if (current.getImagen().isEmpty()
                 || current.getImagen().equalsIgnoreCase("")
