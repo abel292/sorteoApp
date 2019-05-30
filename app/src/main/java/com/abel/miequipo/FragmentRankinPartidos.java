@@ -1,7 +1,5 @@
 package com.abel.miequipo;
 
-
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -9,10 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,14 +32,12 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentRankin extends BaseFragment {
+public class FragmentRankinPartidos extends BaseFragment {
 
 
     ViewModelRankinJugadores viewModelRankinJugadores;
@@ -51,14 +47,14 @@ public class FragmentRankin extends BaseFragment {
     LineChart grafica;
 
     ImageView imageView, imageView2, imageView3;
-    TextView textViewTitulo;
     TextView textViewNombreJugador, textViewNombreJugador2, textViewNombreJugador3;
     TextView textViewPartidos, textViewPartidos2, textViewPartidos3;
     TextView textViewCampeonatos, textViewCampeonatos2, textViewCampeonatos3;
 
     int currentValue = 0;
+    private TextView textViewTitulo;
 
-    public FragmentRankin() {
+    public FragmentRankinPartidos() {
         // Required empty public constructor
     }
 
@@ -98,13 +94,13 @@ public class FragmentRankin extends BaseFragment {
         /////////////////////////////////////////////////////estadisticas////////////////////////////////////////////
 
 
-        viewModelRankinJugadores.getAllJugadores().observe(getActivity(), new Observer<List<JugadorRankin>>() {
+        viewModelRankinJugadores.getAllJugadoresTopPartidos().observe(getActivity(), new Observer<List<JugadorRankin>>() {
             @Override
             public void onChanged(@Nullable final List<JugadorRankin> jugadores) {
 
-
-
                 if (jugadores.size() > 3) {
+
+
                     JugadorRankin jugadorUno = jugadores.get(0);
                     JugadorRankin jugadorDos = jugadores.get(1);
                     JugadorRankin jugadorTres = jugadores.get(2);
@@ -120,14 +116,13 @@ public class FragmentRankin extends BaseFragment {
                     textViewPartidos2.setText(String.valueOf(jugadorDos.getPartidosGanados()));
 
                     //TOP 3
-                    textViewCampeonatos3.setText(String.valueOf(jugadorTres.getCampeonatosGanados()));
+                    textViewCampeonatos3.setText(String.valueOf(jugadorDos.getCampeonatosGanados()));
                     textViewNombreJugador3.setText(jugadorTres.getNombre());
                     textViewPartidos3.setText(String.valueOf(jugadorTres.getPartidosGanados()));
                     // Toast.makeText(getContext(),"RANKIN: "+ jugadores.get(0).getNombre(), Toast.LENGTH_SHORT).show();
 
                     final AdapterRankinJugadores adapter = new AdapterRankinJugadores(getContext(), jugadores);
                     recyclerView.setAdapter(adapter);
-
                 } else if (jugadores.size() == 0) {
                     Toast.makeText(getContext(), "Debes agregar jugadores", Toast.LENGTH_LONG).show();
                 } else if (jugadores.size() > 0 && jugadores.size() < 3) {
@@ -136,11 +131,6 @@ public class FragmentRankin extends BaseFragment {
 
             }
         });
-
-
-        //deslizarParaAbrirEscaner(recyclerView);
-        //deslizarParaAbrirEscaner(textViewTitulo);
-        //deslizarParaAbrirEscaner(v);
         return v;
     }
 
@@ -149,46 +139,12 @@ public class FragmentRankin extends BaseFragment {
 
     }
 
-    public void orderList(String[] args)
-    {
-        ArrayList<Integer> lista = new ArrayList<Integer>();
-        lista.add(5);
-        lista.add(7);
-        lista.add(3);
-
-        Collections.sort(lista);
-
-        for (Integer numero: lista) {
-            System.out.println(numero);
-        }
-
-    }
-
-    public void deslizarParaAbrirEscaner(View view) {
-
-        view.setOnTouchListener(new OnListenerSwipe(getContext()) {
-            public void onSwipeTop() {
-                //Toast.makeText(getContext(), "top", Toast.LENGTH_SHORT).show();
-            }
-
-            public void onSwipeRight() {
-                Toast.makeText(getContext(), "right", Toast.LENGTH_SHORT).show();
-            }
-
-            public void onSwipeLeft() {
-                Toast.makeText(getContext(), "LEFT", Toast.LENGTH_SHORT).show();
-            }
-
-            public void onSwipeBottom() {
-                //Toast.makeText(getContext(), "bottom", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     private void binding(View v) {
 
         textViewTitulo = v.findViewById(R.id.textViewTituloFragment);
-        //Top 1
+        textViewTitulo.setText("TOP PARTIDOS");
+
+        //TOP 1
         textViewCampeonatos = v.findViewById(R.id.textViewCampeonatos);
         textViewNombreJugador = v.findViewById(R.id.textViewNombreJugador);
         textViewPartidos = v.findViewById(R.id.textViewPartidos);
@@ -259,6 +215,31 @@ public class FragmentRankin extends BaseFragment {
 
             }
         }
+    }
+
+    public void deslizarParaAbrirEscaner(View view) {
+
+        view.setOnTouchListener(new OnListenerSwipe(getContext()) {
+            public void onSwipeTop() {
+                Toast.makeText(getContext(), "top", Toast.LENGTH_SHORT).show();
+            }
+
+            public void onSwipeRight() {
+                Toast.makeText(getContext(), "right", Toast.LENGTH_SHORT).show();
+                FragmentRankin fragment = new FragmentRankin();
+                ((BaseActivity) getActivity()).replaceFragment(fragment, R.id.mainContainer, true);
+            }
+
+            public void onSwipeLeft() {
+                Toast.makeText(getContext(), "LEFT", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            public void onSwipeBottom() {
+                Toast.makeText(getContext(), "bottom", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /////////////////////////////////////////////////////estadisticas////////////////////////////////////////////

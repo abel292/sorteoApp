@@ -11,7 +11,7 @@ import com.abel.miequipo.data.rankinJugadores.JugadorRankin;
 import com.abel.miequipo.data.seleccionJugadores.DaoJugadoresSeleccionados;
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
 
-@Database(entities = {JugadorEntitie.class, JugadorSeleccionado.class , JugadorRankin.class}, version = 10)
+@Database(entities = {JugadorEntitie.class, JugadorSeleccionado.class , JugadorRankin.class}, version = 12)
 public abstract class MyDataBaseJugadores extends RoomDatabase  {
 
     public abstract DaoJugador daoJugador();

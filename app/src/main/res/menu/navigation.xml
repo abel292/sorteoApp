@@ -4,15 +4,15 @@
     <item
         android:id="@+id/navigation_equipos"
         android:icon="@drawable/jugador"
-        android:title="@string/title_jugadores"/>
-
-  <!--  <item
-        android:id="@+id/navigation_favoritos"
-        android:icon="@drawable/estrella"
-        android:title="@string/title_favoritos" />-->
+        android:title="Top Campeonatos"/>
 
     <item
-        android:id="@+id/navigation_jugadores"
+        android:id="@+id/navigation_top_partidos"
+        android:icon="@drawable/estrella"
+        android:title="Top Partidos" />
+
+    <item
+        android:id="@+id/navigation_top_campeonatos"
         android:title="@string/jugar"
         android:icon="@drawable/football"
         />

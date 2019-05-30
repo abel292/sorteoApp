@@ -9,11 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import com.abel.miequipo.view.base.BaseActivity;
+
+public class MainActivity extends BaseActivity {
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -21,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_equipos:
                     return true;
-              /*  case R.id.navigation_favoritos:
-                    return true;*/
-                case R.id.navigation_jugadores:
+               case R.id.navigation_top_campeonatos:
+                    return true;
+                case R.id.navigation_top_partidos:
                     return true;
             }
             return false;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment mCurrentFragment;
     private FragmentRankin fragmentRankin;
-    private FragmentFavoritos fragmentFavoritos;
+    private FragmentRankinPartidos fragmentFavoritos;
     private FragmentJugadores fragmentJugadores;
 
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         fragmentRankin = new FragmentRankin();
-        fragmentFavoritos = new FragmentFavoritos();
+        fragmentFavoritos = new FragmentRankinPartidos();
         fragmentJugadores = new FragmentJugadores();
 
 
@@ -61,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_equipos:
                         mCurrentFragment = fragmentRankin;
                         break;
-                    /*case R.id.navigation_favoritos:
+                    case R.id.navigation_top_partidos:
                         mCurrentFragment = fragmentFavoritos;
-                        break;*/
-                    case R.id.navigation_jugadores:
+                        break;
+                    case R.id.navigation_top_campeonatos:
                         mCurrentFragment = fragmentJugadores;
                         break;
 

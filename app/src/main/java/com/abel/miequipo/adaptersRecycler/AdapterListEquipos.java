@@ -46,6 +46,8 @@ public class AdapterListEquipos extends BaseAdapter {
 
     String[] equipos;
 
+    int current= 0;
+
 
     public AdapterListEquipos(Fragment fragment, @NonNull List<List<JugadorSeleccionado>> lista, ListView listView, List<JugadorRankin> mAllJugadoresLocal, int limit, int limitCampeonato) {
 
@@ -103,12 +105,15 @@ public class AdapterListEquipos extends BaseAdapter {
         lvJugadores.setLayoutParams(params);
 
         textViewNumEquipo.setText(String.valueOf("EQUIPO " + (position + 1)));
+
+
         imageViewMasUnPartido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentWins = Integer.parseInt(textViewWins.getText().toString());
                 //Toast.makeText(mContext, String.valueOf("EQUIPO " + (position + 1)) + " +1 WIN", Toast.LENGTH_SHORT).show();
                 currentWins = currentWins + 1;
+                current = currentWins;
 
                 textViewWins.setText(String.valueOf(currentWins));
                 equipos[position] = textViewWins.getText().toString();
@@ -120,10 +125,13 @@ public class AdapterListEquipos extends BaseAdapter {
                     }
                     for (List<JugadorSeleccionado> equiposPorSeparado : jugadores){
                         for (JugadorSeleccionado jugador : equiposPorSeparado){
-                            viewModelRankinJugadores.addPartido(String.valueOf(equipos[count]), jugador, mAllJugadoresLocal);
+                            if (equipos[count]!=null){
+                                viewModelRankinJugadores.addPartido(String.valueOf(equipos[count]), jugador, mAllJugadoresLocal);
+                            }else {
+                                Toast.makeText(mContext, "equipo null", Toast.LENGTH_SHORT).show();
+                            }
                         }
                         count ++;
-
                     }
 
                     Toast.makeText(mContext, "Gano el " + String.valueOf("EQUIPO " + (position + 1)), Toast.LENGTH_SHORT).show();

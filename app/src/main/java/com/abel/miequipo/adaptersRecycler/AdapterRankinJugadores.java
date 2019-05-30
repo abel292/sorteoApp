@@ -45,7 +45,7 @@ public class AdapterRankinJugadores extends RecyclerView.Adapter<AdapterRankinJu
 
 
     public AdapterRankinJugadores(@NonNull Context context, List<JugadorRankin> listaJugadores) {
-        if (context!=null){
+        if (context != null) {
             mInflater = LayoutInflater.from(context);
             this.context = context;
             this.listaJugadores = listaJugadores;
@@ -70,36 +70,31 @@ public class AdapterRankinJugadores extends RecyclerView.Adapter<AdapterRankinJu
     public void onBindViewHolder(final WordViewHolder holder, final int position) {
         final JugadorRankin current = listaJugadores.get(position);
 
-        if (position>2){
-            holder.textViewNombreJugador.setText(current.getNombre());
-            holder.textViewGoles.setText(String.valueOf(current.getGoles()));
-            holder.textViewPartidos.setText(String.valueOf(current.getPartidosGanados()));
-            holder.textViewCampeonatos.setText(String.valueOf(current.getCampeonatosGanados()));
+
+        holder.textViewNombreJugador.setText(current.getNombre());
+        holder.textViewGoles.setText(String.valueOf(current.getGoles()));
+        holder.textViewPartidos.setText(String.valueOf(current.getPartidosGanados()));
+        holder.textViewCampeonatos.setText(String.valueOf(current.getCampeonatosGanados()));
 
 
-            if (current.getImagen().isEmpty()
-                    || current.getImagen().equalsIgnoreCase("")
-                    || current.getImagen() == null
-                    || current.getImagen().length() < 1
-                    || current.getImagen().equalsIgnoreCase("sin foto")) {
-                holder.imagenJugador.setImageResource(R.drawable.jugador);
+        if (current.getImagen().isEmpty()
+                || current.getImagen().equalsIgnoreCase("")
+                || current.getImagen() == null
+                || current.getImagen().length() < 1
+                || current.getImagen().equalsIgnoreCase("sin foto")) {
+            holder.imagenJugador.setImageResource(R.drawable.jugador);
 
-                Log.d("allJugadores",current.getNombre()+" partidos: "+current.getPartidosGanados());
+            Log.d("allJugadores", current.getNombre() + " partidos: " + current.getPartidosGanados());
 
-            } else {
-                //Imagen.setPic(image,currentJugador.getImagen(),2);
-                Glide.with(context)
-                        .load(current.getImagen())
-                        .override(50, 50) // resizes the image to 100x200 pixels but does not respect aspect ratio
-                        .into(holder.imagenJugador);
-                //Toast.makeText(mContext,"entre con glide", Toast.LENGTH_SHORT).show();
-            }
-        }else {
-
-            holder.itemView.setVisibility(View.GONE);
-            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
-
+        } else {
+            //Imagen.setPic(image,currentJugador.getImagen(),2);
+            Glide.with(context)
+                    .load(current.getImagen())
+                    .override(50, 50) // resizes the image to 100x200 pixels but does not respect aspect ratio
+                    .into(holder.imagenJugador);
+            //Toast.makeText(mContext,"entre con glide", Toast.LENGTH_SHORT).show();
         }
+       
 
     }
 
@@ -111,7 +106,7 @@ public class AdapterRankinJugadores extends RecyclerView.Adapter<AdapterRankinJu
     public void removeAt(int position) {
 
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position,listaJugadores.size());
+        notifyItemRangeChanged(position, listaJugadores.size());
     }
 
     @Override

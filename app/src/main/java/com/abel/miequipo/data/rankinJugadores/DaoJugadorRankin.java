@@ -31,8 +31,8 @@ public interface DaoJugadorRankin {
     void deleteJugadorSeleccionado(String nombreJugador);
 
     @Query("UPDATE table_rankin SET partidosGanados =:partidosGanados WHERE nombre = :nombreJugador")
-    void addPartido(String partidosGanados, String nombreJugador);
+    void addPartido(int partidosGanados, String nombreJugador);
 
     @Query("UPDATE table_rankin SET campeonatosGanados =:campeonatosGanado WHERE nombre = :nombreJugador")
-    void addCampeonato(String campeonatosGanado, String nombreJugador);
+    void addCampeonato(int campeonatosGanado, String nombreJugador);
 }

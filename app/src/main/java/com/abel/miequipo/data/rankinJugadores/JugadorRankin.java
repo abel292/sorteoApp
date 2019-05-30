@@ -19,13 +19,13 @@ public class JugadorRankin {
     String goles ;
 
     @ColumnInfo(name = "partidosGanados")
-    String partidosGanados;
+    int partidosGanados;
 
     @ColumnInfo(name = "campeonatosGanados")
-    String campeonatosGanados;
+    int campeonatosGanados;
 
 
-    public JugadorRankin(@NonNull String nombre, String imagen, String goles, String partidosGanados, String campeonatosGanados) {
+    public JugadorRankin(@NonNull String nombre, String imagen, String goles, int partidosGanados, int campeonatosGanados) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.goles = goles;
@@ -58,19 +58,19 @@ public class JugadorRankin {
         this.goles = goles;
     }
 
-    public String getPartidosGanados() {
+    public int getPartidosGanados() {
         return partidosGanados;
     }
 
-    public void setPartidosGanados(String partidosGanados) {
+    public void setPartidosGanados(int partidosGanados) {
         this.partidosGanados = partidosGanados;
     }
 
-    public String getCampeonatosGanados() {
+    public int getCampeonatosGanados() {
         return campeonatosGanados;
     }
 
-    public void setCampeonatosGanados(String campeonatosGanados) {
+    public void setCampeonatosGanados(int campeonatosGanados) {
         this.campeonatosGanados = campeonatosGanados;
     }
 }

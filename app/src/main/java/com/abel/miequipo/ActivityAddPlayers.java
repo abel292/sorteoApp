@@ -82,7 +82,7 @@ public class ActivityAddPlayers extends AppCompatActivity {
                 JugadorEntitie jugador = new JugadorEntitie(editTextNombre.getText().toString(), foto);
                 viewModel.insert(jugador);
 
-                JugadorRankin jugadorRankin = new JugadorRankin(editTextNombre.getText().toString(), foto, "0", "0", "0");
+                JugadorRankin jugadorRankin = new JugadorRankin(editTextNombre.getText().toString(), foto, "0", 0, 0);
                 viewModelRankin.insert(jugadorRankin);
 
 

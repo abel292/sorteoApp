@@ -109,12 +109,12 @@ public class RepositorioRankin {
     private static class addPartidoAsyncTask extends AsyncTask<JugadorSeleccionado, Void, Void> {
 
         private DaoJugadorRankin mAsyncTaskDao;
-        private String partidosWins;
+        private int partidosWins;
         private List<JugadorRankin> allJugadores;
 
         addPartidoAsyncTask(DaoJugadorRankin dao, String partidosGanados,List<JugadorRankin> mAllJugadoresLocal) {
             mAsyncTaskDao = dao;
-            partidosWins = partidosGanados;
+            partidosWins = Integer.parseInt( partidosGanados);
             allJugadores = mAllJugadoresLocal;
         }
 
@@ -124,7 +124,7 @@ public class RepositorioRankin {
             for (JugadorRankin jugador : allJugadores) {
 
                 if (jugador.getNombre().equalsIgnoreCase(params[0].getNombre())) {
-                    partidosWins = String.valueOf(Integer.parseInt(partidosWins )+ Integer.parseInt(jugador.getPartidosGanados()));
+                    partidosWins =partidosWins +jugador.getPartidosGanados();
                 }
             }
             mAsyncTaskDao.addPartido(partidosWins, params[0].getNombre());
@@ -141,12 +141,12 @@ public class RepositorioRankin {
     private static class addCampeonatoAsyncTask extends AsyncTask<JugadorSeleccionado, Void, Void> {
 
         private DaoJugadorRankin mAsyncTaskDao;
-        private String campeonatoGanado;
+        private int campeonatoGanado;
         private List<JugadorRankin> allJugadores;
 
         addCampeonatoAsyncTask(DaoJugadorRankin dao, String campeonatoGanado,List<JugadorRankin> mAllJugadoresLocal) {
             mAsyncTaskDao = dao;
-            this.campeonatoGanado = campeonatoGanado;
+            this.campeonatoGanado =  Integer.parseInt(campeonatoGanado);
             allJugadores = mAllJugadoresLocal;
         }
 
@@ -156,7 +156,7 @@ public class RepositorioRankin {
             for (JugadorRankin jugador : allJugadores) {
 
                 if (jugador.getNombre().equalsIgnoreCase(params[0].getNombre())) {
-                    campeonatoGanado = String.valueOf(Integer.parseInt(campeonatoGanado )+ Integer.parseInt(jugador.getCampeonatosGanados()));
+                    campeonatoGanado =campeonatoGanado + jugador.getCampeonatosGanados();
                 }
             }
             mAsyncTaskDao.addCampeonato(campeonatoGanado, params[0].getNombre());

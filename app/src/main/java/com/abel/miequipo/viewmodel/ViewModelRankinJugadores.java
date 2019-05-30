@@ -15,6 +15,8 @@ public class ViewModelRankinJugadores extends AndroidViewModel {
 
     private RepositorioRankin mRepository;
     private LiveData<List<JugadorRankin>> listaJugadores;
+    private LiveData<List<JugadorRankin>> listaJugadoresPartido;
+
     private LiveData<List<JugadorRankin>> mAllJugadoresLocal;
 
     public ViewModelRankinJugadores(Application application) {
@@ -28,8 +30,8 @@ public class ViewModelRankinJugadores extends AndroidViewModel {
     }
 
     public LiveData<List<JugadorRankin>> getAllJugadoresTopPartidos() {
-        listaJugadores= mRepository.getAllJugadoresTopPartidos();
-        return listaJugadores;
+        listaJugadoresPartido=mRepository.getAllJugadoresTopPartidos();
+        return listaJugadoresPartido;
     }
 
     public void insert(JugadorRankin jugadorEntitie) {
