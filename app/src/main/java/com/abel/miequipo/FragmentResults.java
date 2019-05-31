@@ -69,7 +69,7 @@ public class FragmentResults extends Fragment {
         jugadoresSeleccionados = getArguments().getParcelableArrayList(listaJugadores);
         limit = getArguments().getInt(limitJugadores);
         limitCampeonato = getArguments().getInt("limitCampeonato");
-        Toast.makeText(getContext(), "limit campeonato fragment result: "+limitCampeonato, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "limit campeonato fragment result: "+limitCampeonato, Toast.LENGTH_SHORT).show();
         final List<List<JugadorSeleccionado>> lista = formarEquipos(jugadoresSeleccionados, limit);
 
         viewModelRankinJugadores = ViewModelProviders.of(getActivity()).get(ViewModelRankinJugadores.class);

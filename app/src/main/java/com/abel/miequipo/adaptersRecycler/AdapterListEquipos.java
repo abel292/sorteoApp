@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import com.abel.miequipo.R;
 import com.abel.miequipo.data.rankinJugadores.JugadorRankin;
 import com.abel.miequipo.data.seleccionJugadores.JugadorSeleccionado;
+import com.abel.miequipo.objetos.DialogFragmentFelicitaciones;
 import com.abel.miequipo.viewmodel.ViewModelJugadorSeleccionado;
 import com.abel.miequipo.viewmodel.ViewModelNuevoJugador;
 import com.abel.miequipo.viewmodel.ViewModelRankinJugadores;
@@ -137,6 +138,13 @@ public class AdapterListEquipos extends BaseAdapter {
                     }
 
                     Toast.makeText(mContext, "Gano el " + String.valueOf("EQUIPO " + (position + 1)), Toast.LENGTH_SHORT).show();
+                    DialogFragmentFelicitaciones dialog= new DialogFragmentFelicitaciones(fragment.getContext(),fragment.getActivity());
+
+                    String namesJugadoresGanadores= "";
+                    for (JugadorSeleccionado jugador : listJugadores){
+                        namesJugadoresGanadores= namesJugadoresGanadores+ jugador.getNombre()+'\n';
+                    }
+                    dialog.openDialogSelectUser( String.valueOf("EQUIPO " + (position + 1)), namesJugadoresGanadores);
                 }
 
             }

@@ -8,5 +8,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nombre_torneo">Mi torneo</string>
     <string name="jugar">Jugar</string>
+    <string name="imagePicker_title_intent">Seleccione una origen de imagen:</string>
 
 </resources>

@@ -82,7 +82,7 @@ public class FragmentLoading extends Fragment {
                 if (current > 3) {
 
                     //Toast.makeText(getContext(), "Aca termina la animacion", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getContext(), "limit fragmen animation "+String.valueOf(limitCampeonato), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "limit fragmen animation "+String.valueOf(limitCampeonato), Toast.LENGTH_SHORT).show();
 
                     Log.e("esnull",String.valueOf(jugadores.size()));
                     Bundle  bundle= new Bundle();

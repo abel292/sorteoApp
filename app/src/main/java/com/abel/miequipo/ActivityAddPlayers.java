@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
@@ -24,13 +26,17 @@ import android.widget.Toast;
 
 import com.abel.miequipo.data.allJugadores.JugadorEntitie;
 import com.abel.miequipo.data.rankinJugadores.JugadorRankin;
+import com.abel.miequipo.objetos.ImagePicker;
 import com.abel.miequipo.objetos.Imagen;
 import com.abel.miequipo.viewmodel.ViewModelJugadorSeleccionado;
 import com.abel.miequipo.viewmodel.ViewModelNuevoJugador;
 import com.abel.miequipo.viewmodel.ViewModelRankinJugadores;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,12 +52,15 @@ public class ActivityAddPlayers extends AppCompatActivity {
     private ViewModelNuevoJugador viewModel;
     private ViewModelRankinJugadores viewModelRankin;
     private CircleImageView imageViewPerfil;
+    private ImageView imageViewGallery,imageViewCamera;
     private int current = 0;
     private String mCurrentPhotoPath;
     private Button buttonSave;
     private static final int REQUEST_TAKE_PHOTO = 4;
     private String foto = "sin foto";
 
+    private static final int PROFILE_PICTURE = 1;
+    private static final int WALL_PICTURE = 2;
     String path;
 
     @Override
@@ -65,11 +74,29 @@ public class ActivityAddPlayers extends AppCompatActivity {
         imageViewPerfil = findViewById(R.id.imageViewPerfil);
         editTextNombre = findViewById(R.id.editTextNombre);
 
+        imageViewCamera= findViewById(R.id.imageViewCamera);
+        imageViewGallery = findViewById(R.id.imageViewGallery);
 
         viewModel = new ViewModelNuevoJugador(getApplication());
         viewModelRankin = new ViewModelRankinJugadores(getApplication());
 
         imageViewPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //dispatchTakePictureIntent();
+                openGallery();
+            }
+        });
+
+        imageViewGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                openGallery();
+            }
+        });
+
+        imageViewCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
@@ -92,6 +119,41 @@ public class ActivityAddPlayers extends AppCompatActivity {
         });
     }
 
+    public void takeGroupPicture() {
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
+                Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                m.invoke(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Intent chooseImageProfileIntent = ImagePicker.getPickImageIntent(this);
+        startActivityForResult(chooseImageProfileIntent, 1);
+    }
+
+    public void takeGroupProfilePicture() {
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
+                Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                m.invoke(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Intent choseImageBoatIntent = ImagePicker.getPickImageIntent(this);
+        startActivityForResult(choseImageBoatIntent, 2);
+    }
+
+    public void openGallery(){
+
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, WALL_PICTURE);
+
+    }
     public String dispatchTakePictureIntent() {
 
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -163,9 +225,56 @@ public class ActivityAddPlayers extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_TAKE_PHOTO) {
-            Toast.makeText(this, "pase3", Toast.LENGTH_SHORT).show();
-            Imagen.setPic(imageViewPerfil, mCurrentPhotoPath);
+        if (resultCode == Activity.RESULT_OK || requestCode == 0) {
+            switch (requestCode) {
+
+                case PROFILE_PICTURE:
+                    Toast.makeText(this, "picture", Toast.LENGTH_SHORT).show();
+                    break;
+
+                case REQUEST_TAKE_PHOTO:
+                    Toast.makeText(this, "pase3", Toast.LENGTH_SHORT).show();
+                    Imagen.setPic(imageViewPerfil, mCurrentPhotoPath);
+                    break;
+
+                case WALL_PICTURE:
+                    try {
+
+
+                        ////////
+                        Uri selectedImage = data.getData();
+                        final InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+                        final Bitmap selectedImageBitmap = BitmapFactory.decodeStream(imageStream);
+                        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                        Cursor cursor = getContentResolver().query(selectedImage,
+                                filePathColumn, null, null, null);
+                        cursor.moveToFirst();
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        String picturePath = cursor.getString(columnIndex);
+                        File f = new File(picturePath);
+                        String imageName = f.getName();
+
+                        ////
+                        foto= picturePath;
+                        Toast.makeText(this, String.valueOf(picturePath ), Toast.LENGTH_LONG).show();
+
+                        imageViewPerfil.setImageBitmap(selectedImageBitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        //Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+                    }
+                    //Toast.makeText(this, "ERROR picture walsss", Toast.LENGTH_SHORT).show();
+
+                    break;
+
+                default:
+                    super.onActivityResult(requestCode, resultCode, data);
+                    break;
+            }
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            return;
         }
+
+
     }
 }
